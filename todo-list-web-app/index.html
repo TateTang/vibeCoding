@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>待办事项应用</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="hero card">
+        <p class="eyebrow">To-do Studio</p>
+        <h1>🧸 我的待办清单</h1>
+        <p class="subtitle">记录今天要做的事，轻松标记完成并随时查看进度。</p>
+      </section>
+
+      <section class="card panel">
+        <form id="todoForm" class="input-row">
+          <input id="todoInput" type="text" placeholder="今天要做什么？" autocomplete="off" />
+          <select id="priorityInput" class="priority-select" aria-label="任务优先级">
+            <option value="high">高优先级</option>
+            <option value="medium" selected>中优先级</option>
+            <option value="low">低优先级</option>
+          </select>
+          <button type="submit" class="primary-btn">➕ 添加任务</button>
+        </form>
+
+        <section class="stats">
+          <div class="stat">
+            <span>未完成</span>
+            <strong id="pendingCount">0</strong>
+          </div>
+          <div class="stat">
+            <span>已完成</span>
+            <strong id="completedCount">0</strong>
+          </div>
+          <div class="stat total">
+            <span>总计</span>
+            <strong id="totalCount">0</strong>
+          </div>
+        </section>
+
+        <section class="list-wrap">
+          <div class="list-header">
+            <h2>任务列表</h2>
+            <div class="list-actions">
+              <button id="clearCompletedBtn" class="ghost-btn" type="button">清空已完成</button>
+              <button id="clearAllBtn" class="danger-btn" type="button">全部清空</button>
+            </div>
+          </div>
+          <ul id="todoList" class="todo-list" aria-live="polite"></ul>
+          <p id="emptyState" class="empty-state">清单还是空的，先加一条你想完成的小任务吧 ✨</p>
+        </section>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

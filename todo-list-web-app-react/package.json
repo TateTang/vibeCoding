@@ -1,0 +1,21 @@
+{
+  "name": "todo-list-web-app-react",
+  "version": "1.0.0",
+  "private": true,
+  "description": "React 版待办事项应用",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "vite": "^8.0.11"
+  }
+}

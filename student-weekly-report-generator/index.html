@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学生周报生成器</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Weekly Report Studio</p>
+          <h1>学生周报生成器</h1>
+          <p class="intro">
+            用更轻松的方式整理每周表现，快速生成清晰、统一、可复制的学生周报。
+          </p>
+        </div>
+        <div class="hero-badge">
+          <span class="badge-label">本周助手</span>
+          <strong>自动生成 + 历史留存</strong>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <section class="card generator">
+          <div class="section-heading">
+            <div>
+              <p class="section-tag">信息填写</p>
+              <h2>生成本周周报</h2>
+            </div>
+            <span id="statusText" class="status-text">等待生成</span>
+          </div>
+
+          <div class="form-grid">
+            <label class="field">
+              <span>学生姓名</span>
+              <input id="studentName" type="text" placeholder="例如：李明" />
+            </label>
+
+            <label class="field">
+              <span>考勤天数</span>
+              <input id="attendanceDays" type="number" min="0" max="7" placeholder="例如：5" />
+            </label>
+
+            <label class="field">
+              <span>作业完成数</span>
+              <input id="homeworkCount" type="number" min="0" placeholder="例如：8" />
+            </label>
+          </div>
+
+          <div class="actions">
+            <button id="generateBtn" class="primary-btn" type="button">生成周报</button>
+            <button id="copyBtn" class="secondary-btn" type="button">一键复制</button>
+          </div>
+
+          <section class="output-panel">
+            <div class="output-header">
+              <h3>生成结果</h3>
+              <span class="output-tip">可直接发送给家长或老师</span>
+            </div>
+            <textarea
+              id="reportOutput"
+              readonly
+              placeholder="点击“生成周报”后，这里会出现自动生成的周报文字。"
+            ></textarea>
+          </section>
+        </section>
+
+        <aside class="card history-panel">
+          <div class="section-heading">
+            <div>
+              <p class="section-tag">历史记录</p>
+              <h2>之前生成的周报</h2>
+            </div>
+            <button id="clearHistoryBtn" class="ghost-btn" type="button">清空记录</button>
+          </div>
+
+          <div id="historyList" class="history-list">
+            <p class="history-empty">暂时还没有历史记录，先生成一条周报试试看。</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
