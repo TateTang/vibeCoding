@@ -1,5 +1,13 @@
 # AI 塔罗牌占卜站
 
+## 当前线上预览地址
+
+当前已部署到 EdgeOne Pages，可访问以下临时预览链接：
+
+https://local-upload-1778463261685-nnxujxieas.edgeone.cool?eo_token=6680cd4fe5b29988942dae1bbafb3e93&eo_time=1778463308
+
+注意：这个地址是带 `eo_token` 的临时预览链接，后续会过期。失效后需要重新部署，或者在 EdgeOne 控制台重新获取新的预览地址。
+
 ## 启动前准备
 
 1. 进入项目目录。
