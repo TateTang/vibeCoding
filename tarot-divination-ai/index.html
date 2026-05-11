@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 塔罗牌占卜 - 神秘之光</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <header class="header">
+            <div class="title-wrapper">
+                <h1 class="title">✨ AI 塔罗占卜 ✨</h1>
+                <p class="subtitle">探寻命运的秘密</p>
+            </div>
+        </header>
+
+        <main class="main">
+            <!-- 输入区域 -->
+            <section class="input-section">
+                <div class="input-wrapper">
+                    <label for="question" class="label">请提出您的问题</label>
+                    <input 
+                        type="text" 
+                        id="question" 
+                        class="question-input"
+                        placeholder="例如：我最近事业运如何？或 这段感情会有结果吗？"
+                        maxlength="100"
+                    >
+                    <div class="input-hint">字数限制：100字</div>
+                </div>
+
+                <button class="divination-btn" id="startBtn">
+                    <span class="btn-text">🔮 开始占卜</span>
+                    <span class="btn-shine"></span>
+                </button>
+            </section>
+
+            <!-- 卡牌展示区域 -->
+            <section class="cards-section" id="cardsSection" style="display: none;">
+                <div class="cards-container">
+                    <div class="card-wrapper">
+                        <div class="card" id="card1">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <div class="card-pattern">✦</div>
+                                </div>
+                                <div class="card-back" id="cardBack1"></div>
+                            </div>
+                        </div>
+                        <p class="card-label">过去</p>
+                    </div>
+
+                    <div class="card-wrapper">
+                        <div class="card" id="card2">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <div class="card-pattern">✦</div>
+                                </div>
+                                <div class="card-back" id="cardBack2"></div>
+                            </div>
+                        </div>
+                        <p class="card-label">现在</p>
+                    </div>
+
+                    <div class="card-wrapper">
+                        <div class="card" id="card3">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <div class="card-pattern">✦</div>
+                                </div>
+                                <div class="card-back" id="cardBack3"></div>
+                            </div>
+                        </div>
+                        <p class="card-label">未来</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 占卜结果区域 -->
+            <section class="result-section" id="resultSection" style="display: none;">
+                <div class="result-wrapper">
+                    <h2 class="result-title">✨ 占卜结果 ✨</h2>
+                    <div class="result-aura">
+                        <span class="result-orb orb-left"></span>
+                        <span class="result-orb orb-right"></span>
+                    </div>
+                    
+                    <div class="cards-result">
+                        <div class="result-card">
+                            <div class="result-card-title">过去</div>
+                            <div class="result-card-name" id="cardName1"></div>
+                            <div class="result-card-meaning" id="cardMeaning1"></div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-card-title">现在</div>
+                            <div class="result-card-name" id="cardName2"></div>
+                            <div class="result-card-meaning" id="cardMeaning2"></div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-card-title">未来</div>
+                            <div class="result-card-name" id="cardName3"></div>
+                            <div class="result-card-meaning" id="cardMeaning3"></div>
+                        </div>
+                    </div>
+
+                    <div class="divination-interpretation">
+                        <h3>💫 AI 占卜解读</h3>
+                        <div class="interpretation-intro" id="interpretationIntro">命运之镜正在展开，请静心阅读每一道启示。</div>
+                        <div class="interpretation-content" id="interpretationContent"></div>
+                        <div class="interpretation-loading" id="interpretationLoading" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <p>正在与神秘力量沟通...</p>
+                        </div>
+                    </div>
+
+                    <section class="history-panel" id="historyPanel">
+                        <div class="history-header">
+                            <h3>🌙 最近的占卜记录</h3>
+                            <button class="history-clear-btn" id="clearHistoryBtn" type="button">清空记录</button>
+                        </div>
+                        <div class="history-list" id="historyList">
+                            <p class="history-empty">你的占卜记录会在这里留下星轨。</p>
+                        </div>
+                    </section>
+
+                    <button class="restart-btn" id="restartBtn">🔄 重新占卜</button>
+                </div>
+            </section>
+
+            <div class="history-modal" id="historyModal" hidden>
+                <div class="history-modal-backdrop" id="historyModalBackdrop"></div>
+                <div class="history-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle">
+                    <button class="history-modal-close" id="historyModalClose" type="button" aria-label="关闭详情">×</button>
+                    <div class="history-modal-content">
+                        <p class="history-modal-time" id="historyModalTime"></p>
+                        <h3 class="history-modal-title" id="historyModalTitle"></h3>
+                        <p class="history-modal-cards" id="historyModalCards"></p>
+                        <div class="history-modal-interpretation" id="historyModalInterpretation"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 错误提示 -->
+            <div class="error-message" id="errorMessage" style="display: none;"></div>
+        </main>
+
+        <footer class="footer">
+            <p>命运掌握在你手中 • 仅供娱乐参考</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
