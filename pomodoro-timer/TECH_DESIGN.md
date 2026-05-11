@@ -1,0 +1,1 @@
+- 技术选型上,前端用 React + TypeScript + Vite,样式用 Tailwind CSS,通知用浏览器自带的 Notification API, 数据存储用 LocalStorage.
