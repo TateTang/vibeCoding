@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "navigationBarTitleText": "打卡计划",
+    "navigationBarBackgroundColor": "#f7f1e8",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f3ede3",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,104 @@
+<view class="page" wx:if="{{project}}">
+  <view class="summary-card">
+    <view class="summary-header">
+      <view class="summary-main">
+        <text class="project-name">{{project.name}}</text>
+        <text class="project-target">目标 {{project.target}} 天</text>
+      </view>
+      <button class="delete-button" catchtap="handleDeleteProject">删除项目</button>
+    </view>
+
+    <view class="summary-grid">
+      <view class="summary-item">
+        <text class="summary-value">{{project.totalDays}}</text>
+        <text class="summary-label">总打卡天数</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-value">{{project.consecutiveDays}}</text>
+        <text class="summary-label">连续打卡</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-value">{{project.completionRateText}}</text>
+        <text class="summary-label">完成率</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-value">{{project.longestConsecutiveDays}}</text>
+        <text class="summary-label">最长连续</text>
+      </view>
+    </view>
+
+    <button
+      class="checkin-button {{project.checkedToday ? 'is-disabled' : ''}}"
+      bindtap="handleCheckIn"
+      disabled="{{project.checkedToday}}"
+    >
+      {{project.checkedToday ? '今天已打卡' : '立即打卡'}}
+    </button>
+  </view>
+
+  <view class="calendar-card">
+    <view class="calendar-header">
+      <button class="month-button" bindtap="handlePreviousMonth">‹</button>
+      <text class="month-label">{{monthLabel}}</text>
+      <button class="month-button" bindtap="handleNextMonth">›</button>
+    </view>
+
+    <view class="week-row">
+      <text class="week-label" wx:for="{{weekLabels}}" wx:key="*this">{{item}}</text>
+    </view>
+
+    <view class="calendar-grid">
+      <view
+        class="day-cell {{item.isCurrentMonth ? '' : 'is-muted'}}"
+        wx:for="{{calendarDays}}"
+        wx:key="key"
+        bindtap="handleSelectDate"
+        data-date="{{item.date}}"
+      >
+        <view class="day-badge {{item.isChecked ? 'is-checked' : ''}} {{item.isToday ? 'is-today' : ''}} {{selectedDateInfo && selectedDateInfo.date === item.date ? 'is-selected' : ''}}">
+          <text class="day-text">{{item.day}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="note-panel" wx:if="{{selectedDateInfo}}">
+      <view class="note-header">
+        <text class="note-date">{{selectedDateInfo.date}}</text>
+        <text class="note-status {{selectedDateInfo.isChecked ? 'is-success' : 'is-empty'}}">
+          {{selectedDateInfo.isChecked ? '已打卡' : '未打卡'}}
+        </text>
+      </view>
+      <text class="note-time" wx:if="{{selectedDateInfo.createdAtText}}">{{selectedDateInfo.createdAtText}}</text>
+      <text class="note-content">
+        {{selectedDateInfo.isChecked ? (selectedDateInfo.note || '这一天没有填写备注。') : '这一天还没有打卡记录。'}}
+      </text>
+    </view>
+  </view>
+
+  <view class="records-section">
+    <view class="section-header">
+      <text class="section-title">打卡记录</text>
+      <text class="section-subtitle">{{records.length}} 条</text>
+    </view>
+
+    <view class="record-list" wx:if="{{records.length}}">
+      <view class="record-card" wx:for="{{records}}" wx:key="id">
+        <view class="record-row">
+          <text class="record-date">{{item.date}}</text>
+          <text class="record-created">{{item.created_at_text}}</text>
+        </view>
+        <text class="record-note">{{item.note || '这次打卡没有填写备注。'}}</text>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:else>
+      <text>这个项目还没有打卡记录</text>
+    </view>
+  </view>
+</view>
+
+<view class="page" wx:else>
+  <view class="empty-state">
+    <text>没有找到这个项目</text>
+  </view>
+</view>

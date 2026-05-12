@@ -1,0 +1,73 @@
+<view class="page">
+  <view class="hero">
+    <view>
+      <text class="hero-label">今日进度</text>
+      <text class="hero-title">把打卡这件事，做得轻一点也稳一点</text>
+    </view>
+    <text class="hero-date">{{today}}</text>
+  </view>
+
+  <view class="project-list" wx:if="{{projects.length}}">
+    <view
+      class="project-card"
+      wx:for="{{projects}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="handleOpenProject"
+    >
+      <view class="card-top">
+        <view class="card-heading">
+          <text class="project-name">{{item.name}}</text>
+          <view class="status-row">
+            <view class="status-icon {{item.checkedToday ? 'status-checked' : 'status-pending'}}">
+              <text>{{item.checkedToday ? '✓' : ''}}</text>
+            </view>
+            <text class="status-text">{{item.checkedToday ? '今日已打卡' : '今日未打卡'}}</text>
+          </view>
+        </view>
+
+        <button
+          class="checkin-button {{item.checkedToday ? 'is-disabled' : ''}}"
+          catchtap="handleCheckIn"
+          data-id="{{item.id}}"
+          disabled="{{item.checkedToday}}"
+        >
+          {{item.checkedToday ? '已完成' : '打卡'}}
+        </button>
+      </view>
+
+      <view class="stats-row">
+        <view class="stat-box">
+          <text class="stat-value">{{item.consecutiveDays}}</text>
+          <text class="stat-label">连续天数</text>
+        </view>
+        <view class="stat-box">
+          <text class="stat-value">{{item.totalDays}}</text>
+          <text class="stat-label">总打卡天数</text>
+        </view>
+        <view class="stat-box">
+          <text class="stat-value">{{item.target}}</text>
+          <text class="stat-label">目标天数</text>
+        </view>
+      </view>
+
+      <view class="progress-meta">
+        <text class="progress-label">进度</text>
+        <text class="progress-value">{{item.totalDays}} / {{item.target}}</text>
+      </view>
+
+      <view class="progress-track">
+        <view class="progress-fill" style="width: {{item.progressPercent}}%;"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-title">还没有打卡项目</text>
+    <text class="empty-desc">先创建一个项目，让首页先活起来。</text>
+  </view>
+
+  <view class="bottom-bar">
+    <button class="add-button" bindtap="handleAddProject">添加项目</button>
+  </view>
+</view>
