@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude mcp *)",
+      "Bash(cargo install *)",
+      "mcp__web-to-mcp__get_html_for_reference"
+    ]
+  }
+}
